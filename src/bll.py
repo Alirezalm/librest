@@ -1,4 +1,8 @@
+from src.models import Member
+
+
 class MemberLogic:
 
-    def insert_member(self, Member):
+    def add_member(self, member: Member):
+        """ Semantics have to get checked here"""
         pass

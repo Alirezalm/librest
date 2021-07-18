@@ -1,3 +1,4 @@
+from src.bll import MemberLogic
 from src.models import Member
 
 
@@ -8,6 +9,7 @@ class MemberInsertController:
         self._send_to_bll()
 
     def _create_member(self) -> Member:
+        """ Syntax validation here """
         member = Member()
         member.name = self.member_data['name']
         member.family = self.member_data['family']
@@ -17,4 +19,5 @@ class MemberInsertController:
         return member
 
     def _send_to_bll(self):
-        pass
+        member_logic = MemberLogic()
+        member_logic.add_member(self.member)
