@@ -20,7 +20,7 @@ class FlaskManager:
     def read_settings(self):
         config_json_filename = self.config + ".json"
 
-        with open(config_json_filename) as config_json_file:
+        with open(os.path.join('config_files', config_json_filename)) as config_json_file:
             config: dict = json.load(config_json_file)
 
         for item, value in config.items():

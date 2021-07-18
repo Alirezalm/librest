@@ -2,7 +2,6 @@ from flask import Flask, jsonify
 
 
 def create_server(config_name: str):
-
     app = Flask(__name__)
 
     config_object = f"server.config.{config_name.capitalize()}Config"
@@ -13,5 +12,8 @@ def create_server(config_name: str):
     def root_api():
         return jsonify({"Hello": "World!"})
 
-    return app
+    @app.route("/api/v1/member", methods = ["GET", "POST"])
+    def member_api():
+        return jsonify({'member': "api"})
 
+    return app
