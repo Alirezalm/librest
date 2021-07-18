@@ -10,6 +10,7 @@ class FlaskManager:
 
     def __init__(self, config: str = "development"):
         self.config = config
+        self.read_settings()
 
     @staticmethod
     def set_env(name: str, value: str):
@@ -25,6 +26,9 @@ class FlaskManager:
         for item, value in config.items():
             FlaskManager.set_env(item, value)
 
+    def run_server(self, port: int):
+        create_server(self.config).run(port = port)
+
 
 @click.group()
 def cli():
@@ -35,9 +39,7 @@ def cli():
 @click.argument("port", default = 8000)
 def runserver(port):
     server_manager = FlaskManager("development")
-    server_manager.read_settings()
-    server = create_server(server_manager.config)
-    server.run(port = port)
+    server_manager.run_server(port)
 
 
 cli.add_command(runserver)
