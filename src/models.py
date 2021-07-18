@@ -1,4 +1,5 @@
 from abc import ABC
+from dataclasses import dataclass
 from datetime import datetime
 
 
@@ -6,15 +7,16 @@ class BaseMember(ABC):
     _mem_id = 0
 
 
+@dataclass
 class Member(BaseMember):
-    def __init__(self, name: str, family: str, address: str, phone: str, age: int):
+    def __init__(self):
         BaseMember._mem_id += 1
         self._mem_id = BaseMember._mem_id
-        self.__name = name
-        self.__family = family
-        self.__address = address
-        self.__phone = phone
-        self.__age = age
+        self.__name: str = ''
+        self.__family: str = ''
+        self.__address: str = ''
+        self.__phone: str = ''
+        self.__age: int = 0
         self.__date = str(datetime.now())
 
     @property
@@ -24,6 +26,7 @@ class Member(BaseMember):
     @member_id.setter
     def member_id(self, value):
         pass
+
     @property
     def name(self):
         return self.__name
@@ -55,6 +58,14 @@ class Member(BaseMember):
     @phone.setter
     def phone(self, value):
         self.__phone = value
+
+    @property
+    def age(self):
+        return self.__age
+
+    @age.setter
+    def age(self, value):
+        self._age = value
 
     @property
     def date(self):
