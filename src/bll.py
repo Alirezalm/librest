@@ -1,8 +1,12 @@
+from src.DAL.managers import MemberManager
 from src.models import Member
 
 
 class MemberLogic:
 
-    def add_member(self, member: Member):
+    @staticmethod
+    def add_member(member: Member):
         """ Semantics have to get checked here"""
-        pass
+
+        manager = MemberManager()
+        manager.insert(member)

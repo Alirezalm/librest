@@ -5,7 +5,7 @@ import click
 import psycopg2
 
 
-class DataBaseConnector:
+class DBConnector:
     def __init__(self, db_name: str = "postgres"):
         self.setting_json = os.path.join(
             os.path.abspath(os.path.dirname(os.path.dirname(__file__))), f"config_files/{db_name}Config.json"
@@ -42,3 +42,7 @@ class DataBaseConnector:
         else:
             click.echo("Connection Already available")
             return self.connection
+
+
+
+

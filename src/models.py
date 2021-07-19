@@ -3,7 +3,11 @@ from dataclasses import dataclass
 from datetime import datetime
 
 
-class BaseMember(ABC):
+class BaseModel(ABC):
+    pass
+
+
+class BaseMember(BaseModel):
     _mem_id = 0
 
 
