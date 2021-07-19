@@ -17,13 +17,12 @@ class IManager(ABC):
 class MemberManager(IManager):
 
     def insert(self, member: Member):
-
+        connection = DBConnector().get_connection()
         try:
-            connection = DBConnector().get_connection()
             cursor = connection.cursor()
 
-            sql = "INSERT INTO Members(mem_id, mem_name, mem_family, address, phone, age, mem_date)" \
-                  "VALUES (%d, %s, %s, %s, %s, %d, %s);"
+            sql = """INSERT INTO public."Members" (mem_id, mem_name, mem_family, address, phone, age, mem_date)""" +\
+                  """VALUES (%s, %s, %s, %s, %s, %s, %s);"""
 
             cursor.execute(
                 sql,
@@ -44,3 +43,5 @@ class MemberManager(IManager):
             return 1
         except (Exception, psycopg2.Error) as error:
             print(error)
+        # finally:
+        #     connection.close()

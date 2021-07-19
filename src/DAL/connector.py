@@ -8,7 +8,7 @@ import psycopg2
 class DBConnector:
     def __init__(self, db_name: str = "postgres"):
         self.setting_json = os.path.join(
-            os.path.abspath(os.path.dirname(os.path.dirname(__file__))), f"config_files/{db_name}Config.json"
+            os.path.abspath(os.path.dirname((os.path.dirname(os.path.dirname(__file__))))), f"config_files/{db_name}Config.json"
         )
         self.connection = None
 
