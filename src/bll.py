@@ -4,9 +4,13 @@ from src.models import Member
 
 class MemberLogic:
 
-    @staticmethod
-    def add_member(member: Member):
-        """ Semantics have to get checked here"""
+    def __init__(self):
+        self.manager = MemberManager()
 
-        manager = MemberManager()
-        manager.insert(member)
+    def add_member(self, member: Member):
+        """ Semantics have to get checked here"""
+        self.manager.insert(member)
+
+    def list_members(self):
+        self.manager.list()
+        return 1

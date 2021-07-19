@@ -43,6 +43,7 @@ class MemberManager(IManager):
             connection.commit()
             cursor.close()
             click.echo("new Member inserted")
+            connection.close()
             return 1
         except (Exception, psycopg2.Error) as error:
             print(error)
@@ -58,11 +59,23 @@ class MemberManager(IManager):
             cursor.execute(sql)
             click.echo(f"number of items: {cursor.rowcount}")
             rows = cursor.fetchall()
+
+            members = []
             for row in rows:
-                print(row)
-
+                data = [str(item).strip() for item in row]
+                member = Member()
+                member.member_id = data[-1]
+                member.name = data[0]
+                member.family = data[1]
+                member.address = data[2]
+                member.phone = data[3]
+                member.age = data[4]
+                member.date = data[5]
+                members.append(member)
+                print(member)
             cursor.close()
-
+            connection.close()
+            return members
         except (Exception, psycopg2.Error) as error:
             click.echo(error)
         finally:

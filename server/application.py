@@ -2,7 +2,7 @@ import json
 
 from flask import Flask, jsonify, request
 
-from src.controllers import MemberInsertController
+from src.controllers import MemberInsertController, MemberListController
 
 
 def create_server(config_name: str):
@@ -23,5 +23,8 @@ def create_server(config_name: str):
             MemberInsertController(member_data)
             return jsonify({'status': "inserted"})
         else:
+            member_list_controller = MemberListController()
+            member_list_controller.fetch_all()
+
             return jsonify({'get': "request"})
     return app

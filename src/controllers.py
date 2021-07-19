@@ -21,3 +21,11 @@ class MemberInsertController:
     def _send_to_bll(self):
         member_logic = MemberLogic()
         member_logic.add_member(self.member)
+
+
+class MemberListController:
+    def __init__(self):
+        self.member_logic = MemberLogic()
+
+    def fetch_all(self):
+        return self.member_logic.list_members()
