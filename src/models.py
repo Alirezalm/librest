@@ -70,7 +70,7 @@ class Member(BaseMember):
 
     @age.setter
     def age(self, value):
-        self._age = value
+        self.__age = value
 
     @property
     def date(self):
