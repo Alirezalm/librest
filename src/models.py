@@ -1,3 +1,4 @@
+import uuid
 from abc import ABC
 from dataclasses import dataclass
 from datetime import datetime
@@ -14,8 +15,8 @@ class BaseMember(BaseModel):
 @dataclass
 class Member(BaseMember):
     def __init__(self):
-        BaseMember._mem_id += 1
-        self._mem_id = BaseMember._mem_id
+
+        self._mem_id = str(uuid.uuid1())
         self.__name: str = ''
         self.__family: str = ''
         self.__address: str = ''

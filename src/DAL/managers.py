@@ -43,5 +43,3 @@ class MemberManager(IManager):
             return 1
         except (Exception, psycopg2.Error) as error:
             print(error)
-        # finally:
-        #     connection.close()
