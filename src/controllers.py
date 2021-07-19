@@ -21,3 +21,23 @@ class MemberInsertController:
     def _send_to_bll(self):
         member_logic = MemberLogic()
         member_logic.add_member(self.member)
+
+
+class MemberListController:
+    def __init__(self):
+        self.member_logic = MemberLogic()
+        self.member_list = self._fetch_all()
+
+    def _fetch_all(self):
+        return self.member_logic.list_members()
+
+    def make_data(self):
+        # initial_dict = self.member_list[0].__dict__
+        final_list = []
+        for item in self.member_list:
+            aux_dict = {}
+            for key, value in item.__dict__.items():
+                aux_dict[key.split("__")[-1]] = value
+            final_list.append(aux_dict)
+
+        return final_list
