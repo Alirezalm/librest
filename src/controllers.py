@@ -31,9 +31,13 @@ class MemberListController:
     def _fetch_all(self):
         return self.member_logic.list_members()
 
-    def make_dict(self):
-        initial_dict = self.member_list[0].__dict__
-        final_dict = {}
-        for key, value in initial_dict.items():
-            final_dict[key.split("__")[-1]] = value
-        return final_dict
+    def make_data(self):
+        # initial_dict = self.member_list[0].__dict__
+        final_list = []
+        for item in self.member_list:
+            aux_dict = {}
+            for key, value in item.__dict__.items():
+                aux_dict[key.split("__")[-1]] = value
+            final_list.append(aux_dict)
+
+        return final_list

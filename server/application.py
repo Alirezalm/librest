@@ -24,7 +24,7 @@ def create_server(config_name: str):
             return jsonify({'status': "inserted"})
         else:
             member_list_controller = MemberListController()
-            member_list_controller.make_dict()
+            data_to_serialize = member_list_controller.make_data()
 
-            return jsonify({'get': "request"})
+            return jsonify(data_to_serialize)
     return app
