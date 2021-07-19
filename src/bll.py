@@ -12,5 +12,4 @@ class MemberLogic:
         self.manager.insert(member)
 
     def list_members(self):
-        self.manager.list()
-        return 1
+        return self.manager.list()

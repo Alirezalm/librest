@@ -26,6 +26,14 @@ class MemberInsertController:
 class MemberListController:
     def __init__(self):
         self.member_logic = MemberLogic()
+        self.member_list = self._fetch_all()
 
-    def fetch_all(self):
+    def _fetch_all(self):
         return self.member_logic.list_members()
+
+    def make_dict(self):
+        initial_dict = self.member_list[0].__dict__
+        final_dict = {}
+        for key, value in initial_dict.items():
+            final_dict[key.split("__")[-1]] = value
+        return final_dict

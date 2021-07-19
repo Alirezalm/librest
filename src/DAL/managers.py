@@ -72,7 +72,6 @@ class MemberManager(IManager):
                 member.age = data[4]
                 member.date = data[5]
                 members.append(member)
-                print(member)
             cursor.close()
             connection.close()
             return members

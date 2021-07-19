@@ -8,15 +8,10 @@ class BaseModel(ABC):
     pass
 
 
-class BaseMember(BaseModel):
-    _mem_id = 0
-
-
 @dataclass
-class Member(BaseMember):
+class Member(BaseModel):
     def __init__(self):
-
-        self._mem_id = str(uuid.uuid1())
+        self.__mem_id = str(uuid.uuid1())
         self.__name: str = ''
         self.__family: str = ''
         self.__address: str = ''
@@ -26,7 +21,7 @@ class Member(BaseMember):
 
     @property
     def member_id(self):
-        return self._mem_id
+        return self.__mem_id
 
     @member_id.setter
     def member_id(self, value):
